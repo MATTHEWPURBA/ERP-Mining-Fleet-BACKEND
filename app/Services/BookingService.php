@@ -7,28 +7,11 @@ use App\Models\Booking;
 use App\Models\BookingApproval;
 use App\Models\User;
 use App\Models\Vehicle;
-use Illuminate\Contracts\Auth\Factory as AuthFactory;
+use Illuminate\Support\Facades\Auth; // Using the Auth facade instead of AuthFactory
 
 
 class BookingService
 {
-    /**
-     * The authentication factory instance.
-     *
-     * @var \Illuminate\Contracts\Auth\Factory
-     */
-    protected $auth;
-    
-    /**
-     * Create a new booking service instance.
-     *
-     * @param \Illuminate\Contracts\Auth\Factory $auth
-     * @return void
-     */
-    public function __construct(AuthFactory $auth)
-    {
-        $this->auth = $auth;
-    }
 
     /**
      * Create a new booking and set up approval workflow
@@ -56,7 +39,7 @@ class BookingService
         return $booking->load(['user', 'vehicle.vehicleType', 'approvals.approver']);
     }
 
-    /**
+ /**
      * Update an existing booking with new data
      * 
      * @param Booking $booking The booking to update
@@ -66,9 +49,8 @@ class BookingService
      */
     public function updateBooking(Booking $booking, array $data): Booking
     {
-        // Get current user through the guard() method which is defined in the AuthFactory interface
-        // This approach is more explicit and will resolve the PHPIntelephense error
-        $currentUser = $this->auth->guard()->user();
+        // Get current user using Auth facade instead of injected AuthFactory
+        $currentUser = Auth::user();
         
         // Verify update permissions: only pending bookings can be updated (unless admin)
         if ($booking->status !== 'Pending' && $currentUser && $currentUser->role !== 'Administrator') {

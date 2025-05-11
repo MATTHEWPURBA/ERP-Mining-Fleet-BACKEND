@@ -108,6 +108,65 @@ class VehicleController extends Controller
         
         return response()->json($availableVehicles);
     }
+
+
+
+/**
+ * Get bookings associated with a specific vehicle
+ *
+ * @param \App\Models\Vehicle $vehicle
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function getBookings(Vehicle $vehicle)
+{
+    // Using the relationship defined in the Vehicle model to get all bookings
+    // Eager loading related user and approval data to minimize database queries
+    $bookings = $vehicle->bookings()
+        ->with(['user', 'approvals.approver']) // Eager load relationships for efficiency
+        ->orderBy('start_date', 'desc') // Order by start date descending for latest bookings first
+        ->get();
+        
+    return response()->json($bookings);
+}
+
+/**
+ * Get maintenance records for a specific vehicle
+ *
+ * @param \App\Models\Vehicle $vehicle
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function getMaintenance(Vehicle $vehicle)
+{
+    // Using the relationship defined in the Vehicle model to fetch maintenance records
+    $maintenance = $vehicle->maintenance()
+        ->orderBy('date', 'desc') // Most recent maintenance first
+        ->get();
+        
+    return response()->json($maintenance);
+}
+
+/**
+ * Get fuel logs for a specific vehicle
+ *
+ * @param \App\Models\Vehicle $vehicle
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function getFuelLogs(Vehicle $vehicle)
+{
+    // Using the relationship defined in the Vehicle model to fetch fuel logs
+    // Eager loading the creator (user who logged the fuel entry)
+    $fuelLogs = $vehicle->fuelLogs()
+        ->with('creator') // Eager load the user who created the log
+        ->orderBy('date', 'desc') // Most recent fuel logs first
+        ->get();
+        
+    return response()->json($fuelLogs);
+}
+
+
+
+
+
 }
 
 

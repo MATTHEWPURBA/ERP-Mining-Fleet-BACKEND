@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BookingRequest;
 use App\Models\Booking;
+use App\Models\Vehicle;
 use App\Services\BookingService;
 use Illuminate\Http\Request;
 
@@ -112,6 +113,42 @@ class BookingController extends Controller
             'booking' => $booking->fresh(['user', 'vehicle.vehicleType', 'approvals.approver'])
         ]);
     }
+
+
+
+
+/**
+ * Mark a booking as completed and update related vehicle status
+ *
+ * @param \App\Models\Booking $booking
+ * @return \Illuminate\Http\JsonResponse
+ */
+public function complete(Booking $booking)
+{
+    // Check authorization using the BookingPolicy's complete method
+    // This ensures only authorized users (booking creator or administrators) can complete bookings
+    $this->authorize('complete', $booking);
+    
+    // Update booking status to 'Completed'
+    // This status change triggers business logic that may be used by reports or dashboard widgets
+    $booking->status = 'Completed';
+    $booking->save();
+    
+    // Update vehicle status back to 'Available' since the booking is now complete
+    // This is crucial to ensure the vehicle becomes available in the system for new bookings
+    $vehicle = Vehicle::find($booking->vehicle_id);
+    $vehicle->status = 'Available';
+    $vehicle->save();
+    
+    // Return success response with the updated booking data
+    // We use fresh() with eager loading to ensure we get the latest data with all relationships
+    return response()->json([
+        'message' => 'Booking marked as completed successfully',
+        'booking' => $booking->fresh(['user', 'vehicle.vehicleType', 'approvals.approver'])
+    ]);
+}
+
+
 }
 
 

@@ -6,9 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Pagination\Paginator;
 use App\Services\BookingService;
-use App\Services\VehicleService;
-use App\Services\MaintenanceService;
-use App\Services\FuelLogService;
+use App\Services\BookingApprovalService;
+use App\Services\DashboardService;
 use App\Services\ReportService;
 
 class AppServiceProvider extends ServiceProvider
@@ -18,11 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Register essential services
+        // Register implemented services
         $this->app->singleton(BookingService::class);
-        // $this->app->singleton(VehicleService::class);
-        // $this->app->singleton(MaintenanceService::class);
-        // $this->app->singleton(FuelLogService::class);
+        $this->app->singleton(BookingApprovalService::class);
+        $this->app->singleton(DashboardService::class);
         $this->app->singleton(ReportService::class);
     }
 

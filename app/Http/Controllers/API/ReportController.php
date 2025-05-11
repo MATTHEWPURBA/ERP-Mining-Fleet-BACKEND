@@ -102,3 +102,7 @@ class ReportController extends Controller
         return response()->json($report);
     }
 }
+
+
+
+// app/Http/Controllers/API/ReportController.php

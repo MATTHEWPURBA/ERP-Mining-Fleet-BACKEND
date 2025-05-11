@@ -353,3 +353,5 @@ class ReportService
             ->get();
     }
 }
+
+// App/services/ReportService.php

@@ -17,3 +17,5 @@ return [
     
     'supports_credentials' => true, // Required for Sanctum authentication
 ];
+
+// config/cors.php

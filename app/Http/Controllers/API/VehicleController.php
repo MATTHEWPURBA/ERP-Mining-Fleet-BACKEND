@@ -109,3 +109,6 @@ class VehicleController extends Controller
         return response()->json($availableVehicles);
     }
 }
+
+
+// App/Http/Controllers/API/VehicleController.php

@@ -40,3 +40,6 @@ class VehicleSeeder extends Seeder
     }
     
 }
+
+
+// database/seeders/VehicleSeeder.php

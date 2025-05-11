@@ -32,3 +32,6 @@ class FuelLog extends Model
 }
 
 // app/Models/FuelLog.php
+
+
+// app/Models/FuelLog.php

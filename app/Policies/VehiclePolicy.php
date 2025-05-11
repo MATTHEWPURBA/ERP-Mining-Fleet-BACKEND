@@ -51,3 +51,6 @@ class VehiclePolicy
         return $user->role === 'Administrator';
     }
 }
+
+
+// app/Policies/VehiclePolicy.php

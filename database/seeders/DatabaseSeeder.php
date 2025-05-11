@@ -21,3 +21,5 @@ class DatabaseSeeder extends Seeder
         ]);
     }
 }
+
+// database/seeders/DatabaseSeeder.php

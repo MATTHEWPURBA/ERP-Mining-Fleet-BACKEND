@@ -9,3 +9,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 }
+
+
+// app/Http/Controllers/Controller.php

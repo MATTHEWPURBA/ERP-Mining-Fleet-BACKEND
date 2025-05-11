@@ -110,3 +110,5 @@ return [
     ],
 
 ];
+
+// config/queue.php

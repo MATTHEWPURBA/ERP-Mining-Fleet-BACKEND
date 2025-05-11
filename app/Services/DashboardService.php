@@ -272,3 +272,6 @@ class DashboardService
             ->toArray();
     }
 }
+
+
+// App/Services/DashboardService.php

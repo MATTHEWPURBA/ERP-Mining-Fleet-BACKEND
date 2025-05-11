@@ -30,3 +30,6 @@ class SendBookingRejectedNotification implements ShouldQueue
         $user->notify(new BookingRejectedNotification($booking, $comments));
     }
 }
+
+
+// app/Listeners/SendBookingRejectedNotification.php

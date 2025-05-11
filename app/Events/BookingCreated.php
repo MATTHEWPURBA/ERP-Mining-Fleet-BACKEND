@@ -40,3 +40,6 @@ class BookingCreated implements ShouldBroadcast
         ];
     }
 }
+
+
+// app/Events/BookingCreated.php

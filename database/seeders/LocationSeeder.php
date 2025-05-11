@@ -47,3 +47,5 @@ class LocationSeeder extends Seeder
     }
 
 }
+
+// database/seeders/LocationSeeder.php

@@ -27,3 +27,6 @@ class SendBookingApprovedNotification implements ShouldQueue
     }
 }
 
+
+
+// app/Listeners/SendBookingApprovedNotification.php

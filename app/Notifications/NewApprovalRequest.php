@@ -75,3 +75,6 @@ class NewApprovalRequest extends Notification implements ShouldQueue
         ];
     }
 }
+
+
+// app/Notifications/NewApprovalRequest.php

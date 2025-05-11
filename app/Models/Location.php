@@ -27,3 +27,4 @@ class Location extends Model
 
 
 // app/Models/Location.php
+

@@ -103,3 +103,7 @@ class FuelLogController extends Controller
         ]);
     }
 }
+
+
+
+// app/Http/Controllers/API/FuelLogController.php

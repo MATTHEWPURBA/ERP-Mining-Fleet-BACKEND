@@ -40,3 +40,6 @@ class BookingApproved implements ShouldBroadcast
         ];
     }
 }
+
+
+// app/events/BookingApproved.php

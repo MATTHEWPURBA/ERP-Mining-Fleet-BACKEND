@@ -54,3 +54,6 @@ class UserPolicy
         return $user->role === 'Administrator' && $user->id !== $model->id;
     }
 }
+
+
+// app/Policies/UserPolicy.php

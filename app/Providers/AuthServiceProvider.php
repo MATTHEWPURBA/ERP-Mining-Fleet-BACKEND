@@ -39,3 +39,6 @@ class AuthServiceProvider extends ServiceProvider
         });
     }
 }
+
+
+// app/Providers/AuthServiceProvider.php

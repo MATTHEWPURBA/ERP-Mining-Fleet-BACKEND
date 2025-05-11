@@ -68,3 +68,4 @@ class BookingApproved extends Notification implements ShouldQueue
     }
 }
 
+// app/Notifications/BookingApproved.php

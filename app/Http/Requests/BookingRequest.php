@@ -34,3 +34,7 @@ class BookingRequest extends FormRequest
          return $rules;
      }
 }
+
+
+
+// app/Http/Requests/BookingRequest.php

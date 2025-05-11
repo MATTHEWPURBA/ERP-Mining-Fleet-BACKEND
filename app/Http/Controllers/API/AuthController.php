@@ -45,3 +45,6 @@ class AuthController extends Controller
     }
 }
 
+
+
+// app/Http/Controllers/API/AuthController.php

@@ -145,3 +145,6 @@ class MaintenanceDetailsSheet implements FromArray, WithHeadings, ShouldAutoSize
         return 'Details';
     }
 }
+
+
+// app/Exports/MaintenanceExport.php

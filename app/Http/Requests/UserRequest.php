@@ -41,3 +41,7 @@ class UserRequest extends FormRequest
         return $rules;
     }
 }
+
+
+
+// app/Http/Requests/UserRequest.php    

@@ -116,3 +116,5 @@ return [
     ],
 
 ];
+
+// config/mail.php

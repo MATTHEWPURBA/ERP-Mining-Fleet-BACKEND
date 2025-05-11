@@ -61,3 +61,6 @@ class VehicleTypeController extends Controller
         }
     }
 }
+
+
+// app/Http/Controllers/API/VehicleTypeController.php

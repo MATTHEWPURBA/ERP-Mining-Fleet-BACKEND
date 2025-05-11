@@ -21,3 +21,6 @@ class VehicleType extends Model
         return $this->hasMany(Vehicle::class);
     }
 }
+
+
+// app/Models/VehicleType.php

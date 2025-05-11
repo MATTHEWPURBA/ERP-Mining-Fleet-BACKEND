@@ -82,3 +82,6 @@ return [
     ],
 
 ];
+
+
+// config/sanctum.php

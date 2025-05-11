@@ -40,3 +40,6 @@ class BookingRejected implements ShouldBroadcast
         ];
     }
 }
+
+
+// app/Events/BookingRejected.php

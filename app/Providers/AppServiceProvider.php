@@ -2,52 +2,39 @@
 
 namespace App\Providers;
 
-use App\Events\BookingApproved;
-use App\Events\BookingCreated;
-use App\Events\BookingRejected;
-use App\Listeners\SendBookingApprovedNotification;
-use App\Listeners\SendBookingRejectedNotification;
-use App\Listeners\SendNewApprovalRequestNotification;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Pagination\Paginator;
+use App\Services\BookingService;
+use App\Services\VehicleService;
+use App\Services\MaintenanceService;
+use App\Services\FuelLogService;
+use App\Services\ReportService;
 
-class EventServiceProvider extends ServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     /**
-     * The event to listener mappings for the application.
-     *
-     * @var array<class-string, array<int, class-string>>
+     * Register any application services.
      */
-    protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
-        ],
-        BookingCreated::class => [
-            SendNewApprovalRequestNotification::class,
-        ],
-        BookingApproved::class => [
-            SendBookingApprovedNotification::class,
-        ],
-        BookingRejected::class => [
-            SendBookingRejectedNotification::class,
-        ],
-    ];
-
-    /**
-     * Register any events for your application.
-     */
-    public function boot(): void
+    public function register(): void
     {
-        //
+        // Register essential services
+        $this->app->singleton(BookingService::class);
+        // $this->app->singleton(VehicleService::class);
+        // $this->app->singleton(MaintenanceService::class);
+        // $this->app->singleton(FuelLogService::class);
+        $this->app->singleton(ReportService::class);
     }
 
     /**
-     * Determine if events and listeners should be automatically discovered.
+     * Bootstrap any application services.
      */
-    public function shouldDiscoverEvents(): bool
+    public function boot(): void
     {
-        return false;
+        // Set default string length for MySQL
+        Schema::defaultStringLength(191);
+        
+        // Configure pagination to use Bootstrap
+        Paginator::useBootstrap();
     }
 }

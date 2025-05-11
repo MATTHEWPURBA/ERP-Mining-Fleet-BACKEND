@@ -66,3 +66,6 @@ class BookingExport implements FromCollection, WithHeadings, WithMapping, Should
         ];
     }
 }
+
+
+// app/Exports/BookingExport.php

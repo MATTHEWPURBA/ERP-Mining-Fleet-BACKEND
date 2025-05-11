@@ -114,3 +114,6 @@ class BookingController extends Controller
     }
 }
 
+
+
+// app/Http/Controllers/API/BookingController.php

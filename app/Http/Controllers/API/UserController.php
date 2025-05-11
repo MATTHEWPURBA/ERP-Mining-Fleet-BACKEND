@@ -75,3 +75,6 @@ class UserController extends Controller
         }
     }
 }
+
+
+// app/Http/Controllers/API/UserController.php

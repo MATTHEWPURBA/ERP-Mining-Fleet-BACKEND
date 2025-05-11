@@ -78,3 +78,6 @@ class BookingApprovalService
         return $approval->load('booking.user', 'booking.vehicle.vehicleType');
     }
 }
+
+
+// App/Services/BookingApprovalService.php

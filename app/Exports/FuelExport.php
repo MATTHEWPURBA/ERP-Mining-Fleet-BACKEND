@@ -190,3 +190,6 @@ class FuelDetailsSheet implements FromArray, WithHeadings, ShouldAutoSize, WithS
         return 'Details';
     }
 }
+
+
+// app/Exports/FuelExport.php

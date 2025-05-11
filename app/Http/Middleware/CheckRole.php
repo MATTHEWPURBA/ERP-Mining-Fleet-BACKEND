@@ -25,3 +25,7 @@ class CheckRole
         return $next($request);
     }
 }
+
+
+
+// app/Http/Middleware/CheckRole.php

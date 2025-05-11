@@ -67,3 +67,6 @@ class UserSeeder extends Seeder
     }
     
 }
+
+
+// database/seeders/UserSeeder.php

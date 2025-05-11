@@ -50,3 +50,6 @@ class User extends Authenticatable
         return $this->hasMany(BookingApproval::class, 'approver_id');
     }
 }
+
+
+// app/Models/User.php

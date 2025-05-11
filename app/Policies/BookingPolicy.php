@@ -73,3 +73,7 @@ class BookingPolicy
             $user->role === 'Administrator';
     }
 }
+
+
+
+// App/Policies/BookingPolicy.php

@@ -39,3 +39,6 @@ class VehicleRequest extends FormRequest
     }
 
 }
+
+
+// // app/Http/Requests/VehicleRequest.php

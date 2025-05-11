@@ -29,3 +29,6 @@ class BookingApproval extends Model
 }
 
 // app/Models/BookingApproval.php
+
+
+// App/Models/BookingApproval.php

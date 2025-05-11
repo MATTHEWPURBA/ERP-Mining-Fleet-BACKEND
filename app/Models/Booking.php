@@ -60,3 +60,6 @@ class Booking extends Model
         return $this->hasMany(BookingApproval::class);
     }
 }
+
+
+// App\Models\Booking.php

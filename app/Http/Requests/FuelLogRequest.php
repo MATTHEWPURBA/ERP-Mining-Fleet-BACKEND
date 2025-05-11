@@ -32,3 +32,7 @@ class FuelLogRequest extends FormRequest
     }
 
 }
+
+
+
+// app/Http/Requests/FuelLogRequest.php

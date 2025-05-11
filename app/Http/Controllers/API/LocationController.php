@@ -72,3 +72,6 @@ class LocationController extends Controller
         }
     }
 }
+
+
+// app/Http/Controllers/API/LocationController.php

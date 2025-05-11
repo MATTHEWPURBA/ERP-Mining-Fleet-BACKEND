@@ -172,3 +172,6 @@ return [
     ],
 
 ];
+
+
+// config/database.php

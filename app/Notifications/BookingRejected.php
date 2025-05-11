@@ -76,3 +76,6 @@ class BookingRejected extends Notification implements ShouldQueue
         ];
     }
 }
+
+
+// App/notifications/BookingRejected.php

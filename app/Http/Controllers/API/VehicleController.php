@@ -7,9 +7,22 @@ use App\Http\Requests\VehicleRequest;
 use App\Models\Vehicle;
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use App\Services\VehicleService; // Import the service
+
 
 class VehicleController extends Controller
 {
+
+    protected $vehicleService; // Add service property
+
+        // Inject the service using dependency injection
+        public function __construct(VehicleService $vehicleService)
+        {
+            $this->vehicleService = $vehicleService;
+        }
+
+        
+
     public function index(Request $request)
     {
         $vehicles = Vehicle::with(['vehicleType', 'location'])
@@ -80,31 +93,8 @@ class VehicleController extends Controller
             'vehicle_type_id' => 'nullable|exists:vehicle_types,id'
         ]);
         
-        $startDate = $validated['start_date'];
-        $endDate = $validated['end_date'];
-        
-        $bookedVehicleIds = Booking::where(function($query) use ($startDate, $endDate) {
-                $query->whereBetween('start_date', [$startDate, $endDate])
-                    ->orWhereBetween('end_date', [$startDate, $endDate])
-                    ->orWhere(function($q) use ($startDate, $endDate) {
-                        $q->where('start_date', '<', $startDate)
-                          ->where('end_date', '>', $endDate);
-                    });
-            })
-            ->where('status', '!=', 'Rejected')
-            ->pluck('vehicle_id')
-            ->toArray();
-        
-        $availableVehicles = Vehicle::with(['vehicleType', 'location'])
-            ->where('status', 'Available')
-            ->whereNotIn('id', $bookedVehicleIds)
-            ->when(isset($validated['location_id']), function($query) use ($validated) {
-                $query->where('location_id', $validated['location_id']);
-            })
-            ->when(isset($validated['vehicle_type_id']), function($query) use ($validated) {
-                $query->where('vehicle_type_id', $validated['vehicle_type_id']);
-            })
-            ->get();
+        // Use the service instead of implementing the logic here
+        $availableVehicles = $this->vehicleService->findAvailableVehicles($validated);
         
         return response()->json($availableVehicles);
     }
@@ -162,6 +152,8 @@ public function getFuelLogs(Vehicle $vehicle)
         
     return response()->json($fuelLogs);
 }
+
+
 
 
 

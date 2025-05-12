@@ -8,7 +8,10 @@ use Illuminate\Pagination\Paginator;
 use App\Services\BookingService;
 use App\Services\BookingApprovalService;
 use App\Services\DashboardService;
+use App\Services\FuelLogService;
+use App\Services\MaintenanceService;
 use App\Services\ReportService;
+use App\Services\VehicleService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(BookingApprovalService::class);
         $this->app->singleton(DashboardService::class);
         $this->app->singleton(ReportService::class);
+
+            // Add these registrations:
+        $this->app->singleton(VehicleService::class);
+        $this->app->singleton(MaintenanceService::class);
+        $this->app->singleton(FuelLogService::class);
     }
 
     /**

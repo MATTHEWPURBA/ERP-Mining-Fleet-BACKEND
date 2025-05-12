@@ -101,6 +101,41 @@ class ReportController extends Controller
         $report = $this->reportService->generateFuelReport($validated);
         return response()->json($report);
     }
+
+
+
+    // In ReportController.php, implement the missing methods:
+public function bookingReportExcel(Request $request)
+{
+    $validated = $request->validate([
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+        'user_id' => 'nullable|exists:users,id',
+        'location_id' => 'nullable|exists:locations,id',
+        'vehicle_type_id' => 'nullable|exists:vehicle_types,id',
+        'status' => 'nullable|in:Pending,Approved,Rejected,Completed,Cancelled'
+    ]);
+    
+    return $this->reportService->generateBookingReportExcel($validated);
+}
+
+public function utilizationReportExcel(Request $request)
+{
+    $validated = $request->validate([
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+        'vehicle_id' => 'nullable|exists:vehicles,id',
+        'location_id' => 'nullable|exists:locations,id',
+        'vehicle_type_id' => 'nullable|exists:vehicle_types,id'
+    ]);
+    
+    return $this->reportService->generateUtilizationReportExcel($validated);
+}
+
+
+
+
+
 }
 
 

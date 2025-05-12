@@ -32,12 +32,28 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Define gates for various user roles
+        // Register all policies
+        $this->registerPolicies();
+        
+        // Define gates for roles
         Gate::define('admin-access', function (User $user) {
             return $user->role === 'Administrator';
         });
         
         Gate::define('approver-access', function (User $user) {
+            return in_array($user->role, ['Administrator', 'Approver']);
+        });
+        
+        // Define gates for common operations
+        Gate::define('manage-users', function (User $user) {
+            return $user->role === 'Administrator';
+        });
+        
+        Gate::define('manage-vehicles', function (User $user) {
+            return $user->role === 'Administrator';
+        });
+        
+        Gate::define('approve-bookings', function (User $user) {
             return in_array($user->role, ['Administrator', 'Approver']);
         });
     }

@@ -62,6 +62,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/vehicles/{vehicle}/bookings', [VehicleController::class, 'getBookings']);
     Route::get('/vehicles/{vehicle}/maintenance', [VehicleController::class, 'getMaintenance']);
     Route::get('/vehicles/{vehicle}/fuel-logs', [VehicleController::class, 'getFuelLogs']);
+    Route::get('/vehicles/availability', [VehicleController::class, 'availability']);
+
     
     // Booking routes
     Route::apiResource('bookings', BookingController::class);

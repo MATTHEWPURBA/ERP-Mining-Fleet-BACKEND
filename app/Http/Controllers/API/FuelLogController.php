@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\FuelLogRequest;
 use App\Models\FuelLog;
 use App\Models\Vehicle;
+use App\Services\FuelLogService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -34,12 +35,17 @@ class FuelLogController extends Controller
         return response()->json($fuelLogs);
     }
 
+    protected $fuelLogService;
+    
+    public function __construct(FuelLogService $fuelLogService)
+    {
+        $this->fuelLogService = $fuelLogService;
+    }
+    
     public function store(FuelLogRequest $request)
     {
         $validated = $request->validated();
-        $validated['created_by'] = $request->user()->id;
-        
-        $fuelLog = FuelLog::create($validated);
+        $fuelLog = $this->fuelLogService->createFuelLog($validated);
         
         return response()->json([
             'message' => 'Fuel log created successfully',

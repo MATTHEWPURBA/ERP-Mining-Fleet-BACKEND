@@ -91,3 +91,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/reports/fuel', [ReportController::class, 'fuelReport']);
     Route::post('/reports/fuel/excel', [ReportController::class, 'fuelReportExcel']);
 });
+
+// backend/routes/api.php

@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Jakarta',
 
     /*
     |--------------------------------------------------------------------------
@@ -202,4 +202,4 @@ return [
 ];
 
 // This file is part of the Laravel framework.
-//config/app.php
+//Backend/config/app.php

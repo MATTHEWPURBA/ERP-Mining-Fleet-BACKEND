@@ -174,4 +174,4 @@ return [
 ];
 
 
-// config/database.php
+// Backend/config/database.php

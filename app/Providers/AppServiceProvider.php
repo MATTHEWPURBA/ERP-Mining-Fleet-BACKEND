@@ -44,3 +44,5 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
     }
 }
+
+//Backend/app/Providers/AppServiceProvider.php

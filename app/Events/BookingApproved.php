@@ -42,4 +42,4 @@ class BookingApproved implements ShouldBroadcast
 }
 
 
-// app/events/BookingApproved.php
+// backend/app/events/BookingApproved.php

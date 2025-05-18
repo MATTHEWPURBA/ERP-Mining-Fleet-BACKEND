@@ -42,4 +42,4 @@ class BookingRejected implements ShouldBroadcast
 }
 
 
-// app/Events/BookingRejected.php
+// backend/app/Events/BookingRejected.php

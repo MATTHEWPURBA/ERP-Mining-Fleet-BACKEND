@@ -9,6 +9,37 @@ use Illuminate\Http\Request;
 
 class BookingApprovalController extends Controller
 {
+
+/**
+ * Display a listing of all booking approvals.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return \Illuminate\Http\Response
+ */
+public function index(Request $request)
+{
+    $user = $request->user();
+    
+    // Determine which approvals to show based on user role
+    if ($user->role === 'Administrator') {
+        // Admins can see all approval requests
+        $approvals = BookingApproval::with(['booking.user', 'booking.vehicle.vehicleType'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+    } else {
+        // Normal approvers only see their assigned approvals
+        $approvals = BookingApproval::where('approver_id', $user->id)
+            ->with(['booking.user', 'booking.vehicle.vehicleType'])
+            ->orderBy('created_at', 'desc')
+            ->get();
+    }
+    
+    return response()->json($approvals);
+}
+
+
+
+
     private $bookingApprovalService;
     
     public function __construct(BookingApprovalService $bookingApprovalService)
@@ -57,4 +88,4 @@ class BookingApprovalController extends Controller
 
 
 
-// app/Http/Controllers/API/BookingApprovalController.php
+// backend/app/Http/Controllers/API/BookingApprovalController.php
